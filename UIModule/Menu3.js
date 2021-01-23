@@ -4,38 +4,25 @@ import {
   CardActions,
   CardContent,
   CardHeader,
+  Container,
   Grid,
   List,
   Paper,
   Typography,
 } from "@material-ui/core"
 import React, { useState } from "react"
-
+import DishDetail from "../frontend/src/components/DishDetail"
 // import dishes from "../shared/dishes"
+import dishes from "../frontend/src/shared/dishes"
 
-const Menu = ({ dishes, dish }) => {
+const Menu = ({ dish }) => {
   const [selectedDish, setSelectedDish] = useState(null)
 
   const onDishSelect = (dish) => {
     setSelectedDish(dish)
   }
-  const renderDish = (dish) => {
-    if (dish != null) {
-      return (
-        <Card>
-          <CardActionArea>
-            <img width="100%" src={dish.image} border="3px solid white" />
-            <CardHeader title={dish.name} />
-            <Typography>{dish.description}</Typography>
-          </CardActionArea>
-        </Card>
-      )
-    } else {
-      return <div></div>
-    }
-  }
   return (
-    <div>
+    <Container>
       <Grid
         container
         style={{ marginTop: "1rem", marginBottom: "1rem" }}
@@ -53,9 +40,9 @@ const Menu = ({ dishes, dish }) => {
         ))}
       </Grid>
       <Grid style={{ marginBottom: "1rem", marginTop: "1rem" }}>
-        {renderDish(selectedDish)}
+        <DishDetail selectedDish={selectedDish} dish={dish} />
       </Grid>
-    </div>
+    </Container>
   )
 }
 
